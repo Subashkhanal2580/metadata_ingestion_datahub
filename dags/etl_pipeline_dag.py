@@ -122,7 +122,7 @@ def load_to_postgres(**kwargs):
         print(f"Error loading data to PostgreSQL: {str(e)}")
         raise
 
-# ✅ Function to emit metadata to DataHub
+# Function to emit metadata to DataHub
 def emit_to_datahub(**kwargs):
     """
     Emit metadata to DataHub using direct REST API call to the correct endpoints.
@@ -254,12 +254,12 @@ def emit_to_datahub(**kwargs):
             )
             
             if response.status_code == 200:
-                print(f"✅ Successfully emitted {aspect_name}: {response.json()}")
+                print(f"Successfully emitted {aspect_name}: {response.json()}")
                 success_count += 1
             else:
-                print(f"❌ Failed to emit {aspect_name}: {response.status_code} - {response.text}")
+                print(f"Failed to emit {aspect_name}: {response.status_code} - {response.text}")
         except Exception as e:
-            print(f"❌ Error during {aspect_name} emission: {str(e)}")
+            print(f"Error during {aspect_name} emission: {str(e)}")
     
     if success_count != len(aspect_requests):
         raise Exception(f"Failed to emit all metadata to DataHub. Only {success_count}/{len(aspect_requests)} aspects were successful.")
